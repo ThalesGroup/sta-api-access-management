@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Raise-Fault-1" version="SHA-512:e9f21c663db1c8c7ceabaea2dcceca8ed07e2ead802f66d038a2054878303c20a063de5d81c226c02440959f0e48bfdf33fcdafa6d9109e02ec9b11ebe6f2b5e"/>
+        <VersionInfo resourceName="Verify-JWT" version="SHA-512:1cd48b6d595332f600a0054935073994f2984d387347bb1fc7944809f44474138e44cf5085842c08e79c80b1a8b4bb40948225cfa1ff9517699ab1a5cca3c291"/>
+        <VersionInfo resourceName="Verify-JWT-1" version="SHA-512:3eb0445335c49cbac05c996c5138f009ce2b574cdb6493f5d7d97e8c8418899e0eb576a9957ec03e8561bc34c2b5a6e43559f9e1aff4473a065611958925e83c"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:411aa1401271e49e023b45e7c72f2f5a9b1e5fe0a9418ac8e126ec7bc437061a4968e06671206d908fca1b8e34a6fd328066db6e4424a1c6fa9a2625c45f3d4d"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="openapi://association.json" version="SHA-512:245d73c4451292fff708b30362c2e7df2f3ed2e8442a0e1f7a7710d34d7a9e471d7bede6ca7a89a7026b1b6527886b03f896e5a6a67604f2587ae215f29d7ff7"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:30f13ccc385a9ebf3e37043df10184656942e6f96e4d191a99f989dedce65fab45e373ceea8cbf82c06e23ffaa984f62e75f3d983e35483d0e15b28b0a27df4c"/>
+    </TargetEndpoints>
+</Manifest>

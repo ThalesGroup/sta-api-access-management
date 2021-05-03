@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Verify-JWT</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="post /reset">
+            <Description>Reset Stock</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/reset") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="get /shop">
+            <Description>Get a list of shops</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shop") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /shop/{shopId}">
+            <Description>Get shop information</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shop/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /shop/{shopId}/stock">
+            <Description>Gets the stock information</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shop/*/stock") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /shop/{shopId}/products">
+            <Description>Gets a list of products available</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shop/*/products") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /warehouse">
+            <Description>Get a list of warehouses</Description>
+            <Request>
+                <Step>
+                    <Condition>
+                NOT(
+                       jwt.Verify-JWT.decoded.claim.group == "employee"
+                    OR jwt.Verify-JWT.decoded.claim.group == "manager"
+                )
+                    </Condition>
+                    <Name>Raise-Fault-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/warehouse") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /warehouse/{warehouseId}">
+            <Description>Get warehouse information</Description>
+            <Request>
+                <Step>
+                    <Condition>
+                NOT(
+                       jwt.Verify-JWT.decoded.claim.group == "employee"
+                    OR jwt.Verify-JWT.decoded.claim.group == "manager"
+                )
+                    </Condition>
+                    <Name>Raise-Fault-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/warehouse/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get /warehouse/{warehouseId}/stock">
+            <Description>Gets the stock information</Description>
+            <Request>
+                <Step>
+                    <Condition>
+                NOT(
+                       jwt.Verify-JWT.decoded.claim.group == "employee"
+                    OR jwt.Verify-JWT.decoded.claim.group == "manager"
+                )
+                    </Condition>
+                    <Name>Raise-Fault-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/warehouse/*/stock") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="post /warehouse/{warehouseId}/stock/{stockId}/move/{shopId}">
+            <Description>Move stock from warehouse to shop</Description>
+            <Request>
+                <Step>
+                    <Name>Verify-JWT-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/warehouse/*/stock/*/move/*") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/storeapi</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

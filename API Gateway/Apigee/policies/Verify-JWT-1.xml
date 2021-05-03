@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="Verify-JWT-1">
+    <DisplayName>Verify JWT-1</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <PublicKey>
+        <JWKS uri="https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/protocol/openid-connect/certs"/>
+    </PublicKey>
+    <Issuer>https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA</Issuer>
+    <AdditionalClaims>
+        <Claim name="group">manager</Claim>
+    </AdditionalClaims>
+</VerifyJWT>
