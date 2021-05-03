@@ -1,8 +1,4 @@
-# Thales Open Source Template Project
-
-Template for creating a new project in the [Thales GitHub organization](https://github.com/ThalesGroup). 
-
-Each Thales OSS project repository **MUST** contain the following files at the root:
+# SafeNet Trusted Access - API Access Management
 ## Get started
 
 API Access Management ensures that only authenticated and authorized clients can successfully complete a call to an API. The code in this repository provides all the components required to setup an end to end demonstration scenario for API Access Management. One goal of API Access Management is to separate mapping of roles to user/groups from enforcing policies which in turn allows separation of duties for management tasks. API Gateways also abstract the policy enforcement from the actual API implementation, allowing API developer on achieving the required API function while a dedicated, specialized group implements access policies. Refer to the documentation for further setup and configuration details.
