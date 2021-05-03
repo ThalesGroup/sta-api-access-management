@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    signingConfigs {
+        common {
+            storeFile file("${rootDir}/appauth.keystore")
+            storePassword "appauth"
+            keyAlias "appauth"
+            keyPassword "appauth"
+        }
+    }
+    defaultConfig {
+        applicationId "com.thalesgroup.gartnersample"
+        minSdkVersion 25
+        targetSdkVersion 30
+        versionCode 3
+        versionName "1.0"
+
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'com.spe-demo.apps',
+        ]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "APIProtectionDemo-" + versionName)
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.common
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.common
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+
+}
+
+dependencies {
+
+    implementation 'com.auth0.android:jwtdecode:2.0.0'
+    implementation'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation group: 'net.openid', name: 'appauth', version: '0.8.1'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

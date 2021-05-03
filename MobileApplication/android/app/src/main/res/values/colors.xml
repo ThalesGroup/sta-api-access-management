@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_primary">#FF2a56c6</color>
+    <color name="blue_variant">#FF21449e</color>
+    <color name="blue_highlight">#FF4f8df4</color>
+    <color name="green_status">#FF35a652</color>
+    <color name="red_status">#FFea4236</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

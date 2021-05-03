@@ -1,0 +1,9 @@
+{
+   "apiUrl":"https://ayushmahawar-eval-test.apigee.net/store-api/",
+   "publicClientId":"5062e01d-03f2-4a9c-a6fd-07ddb9fed319",
+   "publicClientSecret":"01009106-1be9-4101-bf48-f94bbf57f48f",
+   "publicClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/",
+   "retailClientId":"cff33557-34d0-4105-a027-74956a9e74ca",
+   "retailClientSecret":"2dba5b24-0c46-498e-8b6a-dadcdb43cc79",
+   "retailClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/"
+}

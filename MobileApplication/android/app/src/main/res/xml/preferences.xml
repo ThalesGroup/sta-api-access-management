@@ -1,0 +1,74 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        android:key="pref_login_hint"
+        android:selectAllOnFocus="true"
+        app:useSimpleSummaryProvider="true"
+        android:enabled="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_login_hint" />
+    <Preference
+        android:key="pref_oauth_info"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="false"
+        android:title="@string/pref_title_oauth_info" />
+    <EditTextPreference
+        android:key="pref_server_url"
+        android:selectAllOnFocus="true"
+        app:useSimpleSummaryProvider="true"
+        android:enabled="false"
+        android:singleLine="true"
+        android:title="@string/pref_title_api_url" />
+    <EditTextPreference
+        android:key="pref_public_client_id"
+        android:selectAllOnFocus="true"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_public_id" />
+    <EditTextPreference
+        android:key="pref_public_client_secret"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_public_secret" />
+    <EditTextPreference
+        android:key="pref_public_wellknown"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_public_wellknown" />
+    <EditTextPreference
+        android:key="pref_retail_client_id"
+        android:selectAllOnFocus="true"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_auth_id" />
+    <EditTextPreference
+        android:key="pref_retail_client_secret"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_auth_secret" />
+    <EditTextPreference
+        android:key="pref_retail_wellknown"
+        android:enabled="false"
+        app:useSimpleSummaryProvider="true"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_auth_wellknown" />
+    <Preference
+        android:key="pref_reset_server"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="false"
+        android:title="@string/pref_title_reset_server" />
+
+</PreferenceScreen>

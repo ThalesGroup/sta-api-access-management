@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="login_types">
+        <item name="Manager">Manager</item>
+        <item name="Employee">Employee</item>
+        <item name="Other">Other</item>
+    </array>
+
+</resources>

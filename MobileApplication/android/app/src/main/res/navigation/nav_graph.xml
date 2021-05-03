@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_map">
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.thalesgroup.gartnersample.ui.MapsFragment"
+        android:label="API Protection Demo"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_productListFragment"
+            app:destination="@id/productListFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_nav_map_to_retailListFragment"
+            app:destination="@id/retailListFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.thalesgroup.gartnersample.ui.ProductListFragment"
+        android:label="List of Products"
+        tools:layout="@layout/fragment_product_list">
+        <argument
+            android:name="retailId"
+            app:argType="string" />
+        <argument
+            android:name="store"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_productListFragment_to_moveStockFragment"
+            app:destination="@id/moveStockFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moveStockFragment"
+        android:name="com.thalesgroup.gartnersample.ui.MoveStockFragment"
+        android:label="Select Shop"
+        tools:layout="@layout/fragment_move_stock">
+        <argument
+            android:name="retailId"
+            app:argType="string" />
+        <argument
+            android:name="stockId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/retailListFragment"
+        android:name="com.thalesgroup.gartnersample.ui.RetailListFragment"
+        android:label="Locations" >
+        <argument
+            android:name="store"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_retailListFragment_to_productListFragment"
+            app:destination="@id/productListFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_configuration"
+        android:name="com.thalesgroup.gartnersample.ui.ConfigFragment"
+        android:label="Configuration" >
+        <action
+            android:id="@+id/action_nav_configuration_to_OAuthFragment"
+            app:destination="@id/OAuthFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/OAuthFragment"
+        android:name="com.thalesgroup.gartnersample.ui.OAuthFragment"
+        android:label="OAuth Information" />
+
+</navigation>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/labelAuthType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/oauth_label_auth_type"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelExpirationTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/oauth_label_expiration_time"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelAuthType" />
+
+        <TextView
+            android:id="@+id/labelIsAuthorized"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/oauth_label_authorized"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelExpirationTime" />
+
+
+        <TextView
+            android:id="@+id/labelAccessToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/oauth_label_access_token"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelIsAuthorized" />
+
+
+        <TextView
+            android:id="@+id/labelRefreshToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="550dp"
+            android:text="@string/oauth_label_refresh_token"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelAccessToken" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fieldAuthType"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toTopOf="@+id/labelExpirationTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/labelAuthType" />
+
+        <TextView
+            android:id="@+id/fieldExpirationTime"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toTopOf="@+id/labelIsAuthorized"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/labelExpirationTime"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/fieldIsAuthorized"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toTopOf="@+id/labelAccessToken"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/labelIsAuthorized"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/fieldAccessToken"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textSize="12sp"
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toTopOf="@+id/labelRefreshToken"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/labelAccessToken"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0Tl94ZUUwSHM0RkJ2UXdINVZNNm0zR0xDVXBoSXEycEF0ME1CWmRrNERJIn0.eyJleHAiOjE2MTgyNjI1NzAsImlhdCI6MTYxODI2MjI3MCwianRpIjoiZWVmMjg2ZDQtMDc1Ni00YzUzLThlYTMtMDc2M2E4YTdkMjIzIiwiaXNzIjoiaHR0cHM6Ly9zcGVkZW1vLXNhc2lkcC5zdGFkZW1vLmNvbS9hdXRoL3JlYWxtcy9LWDhPNUxGWkZELVNUQSIsImF1ZCI6IjIyNzg3YmIyLWMwMmYtNDE4Ni1hMDg3LTQzOGQ0YjMyNjAyZiIsInN1YiI6IjZhZDViMGNkLWZjZjAtNGFlYS04YjQyLTJiODAwYjY2YTBjMyIsInR5cCI6IkJlYXJlciIsImF6cCI6IjIyNzg3YmIyLWMwMmYtNDE4Ni1hMDg3LTQzOGQ0YjMyNjAyZiIsInNlc3Npb25fc3RhdGUiOiJmOGMyYTJlOS0yNGNlLTRiMDgtYjFmZi0yMWRmN2RmZjNmMmQiLCJhY3IiOiIxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SWQiOiIyMjc4N2JiMi1jMDJmLTQxODYtYTA4Ny00MzhkNGIzMjYwMmYiLCJjbGllbnRIb3N0IjoiMTcyLjIyLjAuMTA1IiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yMi4wLjEwNSJ9.PeEX3fz2oGFEcRMrHfTufsNcZYsDZm25DfrAdzPjUMsSdNJYBUnd6Av1oCTRyla6FnNCbHJ0hQF_MtuKPJ1Fdlm7FFCWR5dkVX93m0iiJsJGU-QHtX_pm8ESA5sQ3yl1sqCeOQNID2c7g1Cf-rMtSu0q2OHt9XEbtybqCospexwiiPILPJDhtd8YsjDuKPMOB_JPXXur0mSXy_NMJSWHFThWZbb2in3GozmPcy_Mc6T7aaWPUPR3s6xMc1-ermnK6GWV490jueVvPLt31WQlU3YF8qjWhrjMtAVwDVeACicRUTZ1xPV5DnLXe78EeTrA6buYot01D6UWCG6YdmhcbA" />
+
+        <TextView
+            android:id="@+id/fieldRefreshToken"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            android:textSize="12sp"
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/labelRefreshToken" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

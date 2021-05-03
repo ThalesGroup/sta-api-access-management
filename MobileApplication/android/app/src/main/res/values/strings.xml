@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">API Protection Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="config_read_successful">Config read successfully</string>
+    <string name="config_read_failure">Config failed to load: </string>
+    <string name="file_read_not_found">File could not be found</string>
+    <string name="file_read_failure">File could not be read</string>
+    <string name="launch_error">Launch error: </string>
+    <string name="unknown_marker_clicked">Unknown marker clicked</string>
+    <string name="move_request_select_store">Please select a store</string>
+    <string name="move_request_enter_count">Please enter a valid count</string>
+    <string name="dialog_move_failure_title">Error</string>
+    <string name="dialog_move_failure_message">Failed to move stock %1$s</string>
+    <string name="dialog_move_failure_button">Ok</string>
+    <string name="dialog_move_success_title">Confirmation</string>
+    <string name="dialog_move_success_message">We have successfully moved the stock</string>
+    <string name="dialog_move_success_button">Ok</string>
+    <string name="oauth_unauthorized">Unauthorized</string>
+    <string name="oauth_authorized">Authorized</string>
+    <string name="oauth_client_credentials">Client Credentials</string>
+    <string name="oauth_expiration_seconds">%1$s seconds</string>
+    <string name="display_no_user">No user logged in</string>
+    <string name="display_no_credentials">No Credentials</string>
+    <string name="display_public_credentials">Public Credentials</string>
+    <string name="stock_unavailable">Stock Not Available</string>
+    <string name="stock_quantity">Stock Available (QTY:%1$d)</string>
+    <string name="tab_stores">Stores</string>
+    <string name="tab_warehouses">Warehouses</string>
+    <string name="field_move_count">Move Count</string>
+    <string name="button_move_stock">Move</string>
+    <string name="oauth_label_auth_type">Auth Type</string>
+    <string name="oauth_label_expiration_time">Expiration Time</string>
+    <string name="oauth_label_authorized">Authorized?</string>
+    <string name="oauth_label_access_token">Access Token</string>
+    <string name="oauth_label_refresh_token">Refresh Token</string>
+    <string name="product_row_move_item">Move Item</string>
+    <string name="product_row_stock_available">Stock Available</string>
+    <string name="shop_row_name">Shop Name</string>
+    <string name="shop_row_description">Shop Description</string>
+    <string name="content_desc_drawer_icon">Drawer Icon</string>
+    <string name="content_desc_status_icon">Status icon</string>
+    <string name="content_desc_retail_banner">Retail Banner</string>
+    <string name="card_cancel_button">Cancel</string>
+    <string name="retail_card_products_button">View Product List</string>
+    <string name="pref_title_login_hint">Login Hint</string>
+    <string name="pref_title_oauth_info">OAuth Info</string>
+    <string name="pref_title_api_url">API URL</string>
+    <string name="pref_title_public_id">Public Client ID</string>
+    <string name="pref_title_public_secret">Public Client Secret</string>
+    <string name="pref_title_public_wellknown">Public Wellknown Discovery</string>
+    <string name="pref_title_auth_id">Retail Client ID</string>
+    <string name="pref_title_auth_secret">Retail Client Secret</string>
+    <string name="pref_title_auth_wellknown">Retail Wellknown Discovery</string>
+    <string name="pref_title_reset_server">Reset Server</string>
+
+
+</resources>
