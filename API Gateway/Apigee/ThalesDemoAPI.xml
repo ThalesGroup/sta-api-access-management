@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="6" name="ThalesDemoAPI">
+    <Basepaths>/thalesdemoapi</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1620158274920</CreatedAt>
+    <CreatedBy>holger.brueckner@thalesgroup.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>ThalesDemoAPI</DisplayName>
+    <LastModifiedAt>1620171549050</LastModifiedAt>
+    <LastModifiedBy>holger.brueckner@thalesgroup.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:ad0a0b3eca87bc5b3deaf65a5f1e3d72b04e0726ba76745b6205789cafc1c09992c76e29303a7a4f284a9a88297015ac95d0cb00fd0203300699381d8344a8cf:eu-west-1</ManifestVersion>
+    <Policies>
+        <Policy>Require-Manager-Group-Claim</Policy>
+        <Policy>Require-Manager-or-Employee-Group-Claim</Policy>
+        <Policy>Validate-STA-access_token</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

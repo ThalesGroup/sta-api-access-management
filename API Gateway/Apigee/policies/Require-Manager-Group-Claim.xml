@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="Raise-Fault-1">
-    <DisplayName>Raise Fault-1</DisplayName>
-    <Properties/>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Require-Manager-Group-Claim">
+    <DisplayName>Require Manager Group Claim</DisplayName>
     <FaultResponse>
         <Set>
             <Headers/>
             <Payload contentType="text/plain">{
-    "message": "Unauthorized. You need to login as an employee or manager to list warehouses".
+    "message": "Unauthorized. You need to login as a manager to move inventory".
 }</Payload>
             <StatusCode>401</StatusCode>
             <ReasonPhrase>Unauthorized</ReasonPhrase>
