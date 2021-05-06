@@ -1,0 +1,97 @@
+{
+  "locations": [
+    {
+      "id": "017acfdd-89cf-425b-b8c5-0096515c0016",
+      "name": "Best Buy",
+      "type": "store",
+      "location": "45.4197818,-75.6495836",
+      "description": "Get our Low Price Guarantee, online or in store, on a huge selection of electronics, appliances, furniture, fitness, travel, baby products and more!",
+      "stock": [
+        {
+          "id": "d8c35767-9319-4460-b94d-9b28ac081a0e",
+          "count": 10
+        },
+        {
+          "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ed",
+          "count": 5
+        },
+        {
+          "id": "3499b7ac-4520-4991-a8d3-94e798c4b0ba",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "cf76562a-5c7f-44f3-b78b-da03b7d6a8d8",
+      "name": "Canada Computers",
+      "type": "store",
+      "location": "45.3388468,-75.725669",
+      "description": "Offers the best prices on Computers, Computer Parts, Laptops, Hard Drives, PC Hardware & Accessories",
+      "stock": [
+        {
+          "id": "d8c35767-9319-4460-b94d-9b28ac081a0e",
+          "count": 1
+        },
+        {
+          "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ed",
+          "count": 3
+        },
+        {
+          "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ef",
+          "count": 2
+        },
+        {
+          "id": "3499b7ac-4520-4991-a8d3-94e798c4b0ba",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "id": "017acfdd-89cf-425b-b8c5-0096515c0016",
+      "name": "Warehouse 1",
+      "type": "warehouse",
+      "location": "45.38156,-75.6106059",
+      "description": "East end warehouse",
+      "stock": [
+        {
+          "id": "d8c35767-9319-4460-b94d-9b28ac081a0e",
+          "count": 100
+        },
+        {
+          "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ed",
+          "count": 25
+        },
+        {
+          "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ef",
+          "count": 50
+        },
+        {
+          "id": "3499b7ac-4520-4991-a8d3-94e798c4b0ba",
+          "count": 500
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "d8c35767-9319-4460-b94d-9b28ac081a0e",
+      "name": "Monitor",
+      "description": "Acer B277U bmiipprzx 27.0\" 2560x1440 75 Hz Monitor"
+    },
+    {
+      "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ed",
+      "name": "Motherboard",
+      "description": "MSI MAG B550M MORTAR"
+    },
+    {
+      "id": "3db4c575-f5a0-4d75-9188-18d7279ef8ef",
+      "name": "CPU",
+      "description": "AMD Ryzen 9 3900XT 3.8 GHz 12-Core Processor"
+    },
+    {
+      "id": "3499b7ac-4520-4991-a8d3-94e798c4b0ba",
+      "name": "Video Card",
+      "description": "Gigabyte Vision OC"
+    }
+  ]
+}

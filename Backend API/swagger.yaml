@@ -1,0 +1,327 @@
+openapi: 3.0.1
+info:
+  title: Store API
+  description: A simple store API
+  version: 1.0.0
+paths:
+  /shop:
+    get:
+      tags:
+        - StoreApi
+      summary: Get a list of shops
+      description: returns a list of shops
+      responses:
+        '200':
+          description: Successfully returned a list of shops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store.Models.ShopInfo'
+  '/shop/{shopId}':
+    get:
+      tags:
+        - StoreApi
+      summary: Get shop information
+      description: gets information for a given shop
+      parameters:
+        - name: shopId
+          in: path
+          description: The identifier of the shop
+          required: true
+          schema:
+            type: string
+            description: The identifier of the shop
+      responses:
+        '200':
+          description: Successfully returned a shop info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store.Models.Shop'
+        '404':
+          description: Shop not found
+  '/shop/{shopId}/stock':
+    get:
+      tags:
+        - StoreApi
+      summary: Gets the stock information
+      description: gets the stock information for a given shop
+      parameters:
+        - name: shopId
+          in: path
+          description: The identifier of the shop
+          required: true
+          schema:
+            type: string
+            description: The identifier of the shop
+      responses:
+        '200':
+          description: Successfully returned a list of stock items in a shop
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store.Models.StockItem'
+        '404':
+          description: Shop not found
+  '/shop/{shopId}/products':
+    get:
+      tags:
+        - StoreApi
+      summary: Gets a list of products available
+      description: gets a list of products available at a store
+      parameters:
+        - name: shopId
+          in: path
+          description: The identifier of the shop
+          required: true
+          schema:
+            type: string
+            description: The identifier of the shop
+      responses:
+        '200':
+          description: Successfully returned a list of products available at the store
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store.Models.Product'
+        '404':
+          description: Shop not found
+  /warehouse:
+    get:
+      tags:
+        - StoreApi
+      summary: Get a list of warehouses
+      description: returns a list of warehouses
+      responses:
+        '200':
+          description: Successfully returned a list of warehouses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store.Models.WarehouseInfo'
+  '/warehouse/{warehouseId}':
+    get:
+      tags:
+        - StoreApi
+      summary: Get warehouse information
+      description: gets information for a given warehouse
+      parameters:
+        - name: warehouseId
+          in: path
+          description: The identifier of the warehouse
+          required: true
+          schema:
+            type: string
+            description: The identifier of the warehouse
+      responses:
+        '200':
+          description: Successfully returned a warehouse info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store.Models.Warehouse'
+        '404':
+          description: Warehouse not found
+  '/warehouse/{warehouseId}/stock':
+    get:
+      tags:
+        - StoreApi
+      summary: Gets the stock information
+      description: gets the stock information for a given warehouse
+      parameters:
+        - name: warehouseId
+          in: path
+          description: The identifier of the warehouse
+          required: true
+          schema:
+            type: string
+            description: The identifier of the warehouse
+      responses:
+        '200':
+          description: Successfully returned a list of stock items in a warehouse
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store.Models.StockItem'
+        '404':
+          description: Warehouse not found
+  '/warehouse/{warehouseId}/stock/{stockId}/move/{shopId}':
+    post:
+      tags:
+        - StoreApi
+      summary: Move stock from warehouse to shop
+      description: move in stock items from warehouse to shop
+      parameters:
+        - name: warehouseId
+          in: path
+          description: The identifier of the warehouse
+          required: true
+          schema:
+            type: string
+            description: The identifier of the warehouse
+        - name: stockId
+          in: path
+          description: The identifier of the stock item
+          required: true
+          schema:
+            type: string
+            description: The identifier of the stock item
+        - name: shopId
+          in: path
+          description: The identifier of the shop
+          required: true
+          schema:
+            type: string
+            description: The identifier of the shop
+      requestBody:
+        description: object with the number of items to move
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Store.Models.MoveRequest'
+      responses:
+        '200':
+          description: Successfully moved items to shop
+        '400':
+          description: Invalid request
+        '404':
+          description: 'Unable to find Shop, Warehouse or Stock Item'
+        '406':
+          description: Unable to move items
+components:
+  schemas:
+    Store.Models.ShopInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the shop
+          nullable: true
+        name:
+          type: string
+          description: The store name
+          nullable: true
+        location:
+          type: string
+          description: The location of the store
+          nullable: true
+      additionalProperties: false
+      description: Basic shop information
+    Store.Models.Shop:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Store Description
+          nullable: true
+        id:
+          type: string
+          description: ID of the shop
+          nullable: true
+        name:
+          type: string
+          description: The store name
+          nullable: true
+        location:
+          type: string
+          description: The location of the store
+          nullable: true
+      additionalProperties: false
+      description: The shop
+    Store.Models.StockItem:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items in stock
+          format: int32
+          nullable: true
+        id:
+          type: string
+          description: ID of the product
+          nullable: true
+        name:
+          type: string
+          description: Name of the product
+          nullable: true
+        description:
+          type: string
+          description: Description of the product
+          nullable: true
+      additionalProperties: false
+      description: Stock item
+    Store.Models.Product:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the product
+          nullable: true
+        name:
+          type: string
+          description: Name of the product
+          nullable: true
+        description:
+          type: string
+          description: Description of the product
+          nullable: true
+      additionalProperties: false
+      description: Product information
+    Store.Models.WarehouseInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the warehouse
+          nullable: true
+        name:
+          type: string
+          description: The warehouse name
+          nullable: true
+        location:
+          type: string
+          description: The location of the warehouse
+          nullable: true
+      additionalProperties: false
+      description: Basic warehouse information
+    Store.Models.Warehouse:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Warehouse Description
+          nullable: true
+        id:
+          type: string
+          description: ID of the warehouse
+          nullable: true
+        name:
+          type: string
+          description: The warehouse name
+          nullable: true
+        location:
+          type: string
+          description: The location of the warehouse
+          nullable: true
+      additionalProperties: false
+      description: The warehouse
+    Store.Models.MoveRequest:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of items to move
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: For moving stock items

@@ -1,0 +1,24 @@
+include:
+  - project: sta/pipeline-templates
+    ref: master
+    file: "build_dotnet_3_1_warnings.yml"
+  - project: sta/pipeline-templates
+    ref: master
+    file: "build_publish_docker.yml"
+  - project: sta/pipeline-templates
+    ref: master
+    file: "resharper.yml"
+
+
+stages:
+  - build
+  - style
+  - test
+  - publish
+    
+variables:
+  VERSION: 1.0.0
+  SOLUTION_NAME: Store.sln
+  RESHARPER_THRESHOLD: 0
+
+

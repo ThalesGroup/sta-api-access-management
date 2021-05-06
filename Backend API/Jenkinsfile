@@ -1,0 +1,131 @@
+pipeline {
+    agent { 
+        label 'ubuntu'
+    }
+
+    triggers { 
+        pollSCM('H/15 * * * *') 
+    }
+	
+	parameters {
+		booleanParam(name: 'ResharperInspection', defaultValue: true, description: 'Should Resharper Inspection run?')
+		booleanParam(name: 'DockerImage', defaultValue: false, description: 'Should push development docker image?')
+    }
+    
+    options {
+        timestamps()
+        timeout(time: 1, unit: 'HOURS')
+        buildDiscarder(logRotator(numToKeepStr:'5'))
+        disableConcurrentBuilds()
+    }
+	environment {
+		RESHARPER_WARNINGS_THRESHOLD=0
+		MSBUILD_WARNINGS_THRESHOLD=0
+		RELEASE_VERSION="1.0.0"
+	}
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'dotnet restore'
+                sh 'dotnet build -c Release'
+            }
+        }
+		stage('BuildDockerImage'){
+		    when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                }
+		    }
+		    steps{
+				sh 'docker build . -t gemalto/storeapi'
+		    }
+		}
+        stage('Publish-Release') {
+            when {
+                allOf
+                {
+                    branch "development";
+                    expression {
+                        currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                    }
+                }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'proget-docker-push', usernameVariable : 'PROGET_USER', passwordVariable :'PROGET_PASSWORD')]) {
+                    sh 'docker login -u $PROGET_USER -p $PROGET_PASSWORD 10.124.100.97:8080'
+                }
+                sh 'docker tag gemalto/storeapi 10.124.100.97:8080/cloudserviceregistry/gemalto/storeapi:$RELEASE_VERSION-$BUILD_NUMBER'
+                sh 'docker push 10.124.100.97:8080/cloudserviceregistry/gemalto/storeapi:$RELEASE_VERSION-$BUILD_NUMBER'
+            }
+        }
+        stage('Publish-Dev') {
+            when {
+                allOf
+                {
+                    not {
+                        branch "development"
+                    };
+                    expression {
+                        (currentBuild.result == null || currentBuild.result == 'SUCCESS') && params.DockerImage 
+                    }
+                }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'proget-docker-push', usernameVariable : 'PROGET_USER', passwordVariable :'PROGET_PASSWORD')]) {
+                    sh 'docker login -u $PROGET_USER -p $PROGET_PASSWORD 10.124.100.97:8080'
+                }
+                sh 'docker tag gemalto/storeapi 10.124.100.97:8080/cloudserviceregistry/gemalto/storeapi:0.$BRANCH_NAME-$BUILD_NUMBER'
+                sh 'docker push 10.124.100.97:8080/cloudserviceregistry/gemalto/storeapi:0.$BRANCH_NAME-$BUILD_NUMBER'
+            }
+        }
+		stage ('Resharper Inspection') {
+        	when { expression { params.ResharperInspection } }
+        	steps {
+        		script {
+        			def resharperInspectionReportPath = "RsInspectionII.xml"
+        			sh 'dotnet tool install JetBrains.ReSharper.GlobalTools --version 2020.3.2 --tool-path tools'
+                    sh 'dotnet build --packages ./.nuget/packages'
+                                           
+                    // Use the Resharper Inspect code command line tool to analyze the solution
+                    sh './tools/jb inspectcode -o=RsInspectionII.xml --caches-home=temp Store.sln --toolset=16.0'
+        
+        			// Publish the R# warnings report
+        			step([$class: 'WarningsPublisher', parserConfigurations: [[parserName: 'Resharper InspectCode', pattern: resharperInspectionReportPath]], unstableTotalAll: env.RESHARPER_WARNINGS_THRESHOLD, usePreviousBuildAsReference: true])
+        
+        			// Determine if the R# warnings exceed the threshold and add a message the result messages if it does.
+        			try {
+        				def resharperInspectionContent = readFile file: resharperInspectionReportPath, encoding: "UTF-8"
+        				def numIssues = new XmlSlurper().parseText(resharperInspectionContent).'**'.findAll{ node-> node.name() == 'Issue' }.size()
+        				if (numIssues > env.RESHARPER_WARNINGS_THRESHOLD.toInteger()) {
+        					appendResultMessage("Found [$numIssues] Resharper warning(s), which exceeds the threshold of [${env.RESHARPER_WARNINGS_THRESHOLD}]")
+        				}
+        			}
+        			catch (e) {
+        				println("An error occurred while parsing the R# inspection XML: ${e}")
+        			}
+        		}
+        	}
+        	post {
+        		always {
+        			archiveArtifacts 'RsInspectionII.xml'
+        		}
+        	}
+        }
+    }
+    post {
+        always {
+			echo "-------------------- ${currentBuild.result} --------------------\n${env.RESULT_MESSAGE}"
+        }
+    }
+}
+// -------------- HELPER METHODS --------------
+
+import groovy.util.slurpersupport.*
+
+// Appends a line to the results message
+@NonCPS
+def appendResultMessage(String message)
+{
+	env.RESULT_MESSAGE = env.RESULT_MESSAGE ? "${env.RESULT_MESSAGE}${message}\n" : "${message}\n"
+}

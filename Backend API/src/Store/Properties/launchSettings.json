@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:8080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "STORE_DB_PATH": "sampledata.json"
+      }
+    }
+  }
+}
