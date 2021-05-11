@@ -1,0 +1,9 @@
+{
+   "apiUrl":"https://storeapi.stademo.com:8090",
+   "publicClientId":"18c15431-b224-4b6e-b7f4-9b1c206de5c1",
+   "publicClientSecret":"d388e288-f2a8-4fc6-9d06-06f21faf3f48",
+   "publicClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/I93AD2MBTD-STA/",
+   "retailClientId":"b199e219-47b4-4304-a82d-e3f77aedc587",
+   "retailClientSecret":"f7b101be-7866-4897-b540-d78ad1b88dbb",
+   "retailClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/I93AD2MBTD-STA/"
+}

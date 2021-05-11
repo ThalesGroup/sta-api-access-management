@@ -1,0 +1,13 @@
+//
+//  AlertDescription.swift
+//  ApiAccessManagementDemo
+//
+
+import Foundation
+
+struct AlertDescription: Identifiable {
+    var id: String { title }
+    var title: String
+    var message: String
+    var buttonInfo:(title: String, action: (() -> Void)?)?
+}
