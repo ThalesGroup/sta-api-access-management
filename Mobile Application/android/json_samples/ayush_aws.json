@@ -1,9 +1,0 @@
-{
-   "apiUrl":"https://ww2quvqcvb.execute-api.us-east-2.amazonaws.com/teststage/",
-   "publicClientId":"22787bb2-c02f-4186-a087-438d4b32602f",
-   "publicClientSecret":"20549e9a-c1cc-4ecb-a06b-0679076e7923",
-   "publicClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/",
-   "retailClientId":"b3f31b74-54cf-4940-8dfd-703e56dc717d",
-   "retailClientSecret":"3a1514ca-4e45-4818-9597-6e3b0533090a",
-   "retailClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/"
-}

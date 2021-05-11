@@ -24,9 +24,7 @@ _Debug Variant_
 `./gradlew assembleDebug`
 
 ### Configuration
-The server configuration is defaulted to the AWS configuration. You can find
-this in the MainActivity.kt class. Additional configurations are provided in the
-json_samples folder.
+The server configuration is defaulted to an AWS sample configuration. You can find this in the MainActivity.kt class.
 
 The schema can be seen below
 ~~~~
