@@ -1,15 +1,16 @@
 # Description
 
-This is the API Access Management applciation demo for iOS. This app demonstrates how
+This is the API Access Management application demo for iOS. This app demonstrates how
 Thales API Gateway can protect API services from unauthorized users, by providing
-an API gateway that protects a sample retail API
+an API gateway that protects a sample retail API.
 
 This app has no concept of what APIs are protected, and uses OAuth credentials
 to access these APIs with whatever credentials have been provided. 
 
 ### Build Environment
 
-This has been tested to build from Mac OS Catalina, with Xcode 12.4. 
+This has been tested to build from Mac OS Catalina, with Xcode 12.4.
+iOS 14.4 and above is required to run the app. 
 
 ### Build Instructions
 
@@ -22,8 +23,8 @@ Swift Package Manager. This dependency is resolved automatically during build
 as long as there is connection to github. 
 
 ### Configuration
-The server configuration is defaulted to the AWS configuration. You can find
-this at `ApiAccessManagementDemo/Resources/Json/Config.json`.
+The server configuration is to a generic configuration by default. In order to properly 
+run the app, a valid server configuration file in JSON format needs to be imported.
 
 The schema can be seen below
 ```
