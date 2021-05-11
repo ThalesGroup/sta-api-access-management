@@ -50,22 +50,18 @@ extension Config {
     
     private static func validateParams(config: Config) -> Bool {
         
-        let uuidStrings = [config.publicClientId,
-                           config.publicClientSecret,
-                           config.retailClientId,
-                           config.retailClientId]
-        
-        let urlStrings = [config.apiUrl,
-                          config.publicClientWellknown,
-                          config.retailClientWellknown]
-        
-        for uuidString in uuidStrings {
-            guard let _ = UUID(uuidString: uuidString) else {
+        for string in [config.publicClientId,
+                       config.publicClientSecret,
+                       config.retailClientId,
+                       config.retailClientSecret] {
+            guard !string.isEmpty else {
                 return false
             }
         }
         
-        for urlString in urlStrings {
+        for urlString in [config.apiUrl,
+                          config.publicClientWellknown,
+                          config.retailClientWellknown] {
             guard let _ = URL(string: urlString) else {
                 return false
             }

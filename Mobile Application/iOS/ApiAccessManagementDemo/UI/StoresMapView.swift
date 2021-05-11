@@ -49,6 +49,7 @@ struct StoresMapView: View {
             } else {
                 if let error = error {
                     Text(error.localizedDescription).multilineTextAlignment(.center)
+                        .padding()
                 } else {
                     Text("Loading ...")
                 }

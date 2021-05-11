@@ -24,8 +24,6 @@ as long as there is connection to github.
 ### Configuration
 The server configuration is defaulted to the AWS configuration. You can find
 this at `ApiAccessManagementDemo/Resources/Json/Config.json`.
-Additional configurations are provided in the
-`ApiAccessManagementDemoTests/TestData` folder.
 
 The schema can be seen below
 ```

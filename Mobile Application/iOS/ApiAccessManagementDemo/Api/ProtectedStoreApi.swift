@@ -133,16 +133,6 @@ class ProtectedStoreApi {
         
         return _client!
     }
-    
-    fileprivate init() {
-        self.configuration = Config(apiUrl: "",
-                                    publicClientId: "",
-                                    publicClientSecret: "",
-                                    publicClientWellknown: "",
-                                    retailClientId: "",
-                                    retailClientSecret: "",
-                                    retailClientWellknown: "")
-    }
 }
 
 // MARK: - Extensions
@@ -160,50 +150,62 @@ extension AuthorizationState.UserInfo {
 
 /// Globally shared object across the app
 extension ProtectedStoreApi {
+     
+    static let configKey = "Config"
     
-    private static var _model: ProtectedStoreApi?
     static var shared: ProtectedStoreApi {
-        if let model = _model {
-            return model
+        return _model ?? ProtectedStoreApi()
+    }
+    
+    static var isConfigured: Bool {
+        if _model != nil {
+            return true
         }
         configureSharedModel()
-        return _model!
+        return _model != nil
     }
-    
-    private static func configureSharedModel() {
-        
-        var jsonString: String?
-        
-        defer {
-            guard let jsonString = jsonString,
-                  let config = Config(withJsonString: jsonString) else {
-                assert(false, "JSON data could not be found or malformed")
-            }
-            let model = ProtectedStoreApi(with: config)
-            _model = model
-        }
-        
-        jsonString = UserDefaults.standard.value(forKey: "Config") as? String
-        if jsonString == nil {
-            guard let defaultConfigPath = Bundle.main.path(forResource: "Config", ofType: "json") else { return }
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: defaultConfigPath))
-                jsonString = String(data: data, encoding: .utf8)
-                UserDefaults.standard.setValue(jsonString, forKey: "Config")
-            } catch {
-                print("Error \(error.localizedDescription)")
-            }
-        }
-    }
-    
+
     static func saveConfig(_ config: Config) {
-        let encoder = JSONEncoder()
         do {
-            let encoded = try encoder.encode(config)  // .decode(Config.self, from: data)
+            let encoded = try JSONEncoder().encode(config)
             let jsonString = String(data: encoded, encoding: .utf8)
-            UserDefaults.standard.setValue(jsonString, forKey: "Config")
+            UserDefaults.standard.setValue(jsonString, forKey: configKey)
         } catch {
             print("Error in saving configuration \(error.localizedDescription)")
+        }
+    }
+
+    private static var _model: ProtectedStoreApi?
+
+    private static func configureSharedModel() {
+        guard let jsonString =  UserDefaults.standard.value(forKey: configKey) as? String,
+              let config = Config(withJsonString: jsonString)else {
+            return
+        }
+        saveConfig(config)
+        _model = ProtectedStoreApi(with: config)
+    }
+    
+    private convenience init() {
+        self.init(with: ProtectedStoreApi.defaultConfig!)
+    }
+    
+    static private var defaultConfig: Config? {
+        let assertFileError = { assert(false, "Config file not found") }
+        do {
+            guard let defaultConfigPath = Bundle.main.path(forResource: "Config", ofType: "json") else {
+                assertFileError()
+                return nil
+            }
+            let data = try Data(contentsOf: URL(fileURLWithPath: defaultConfigPath))
+            guard let jsonString = String(data: data, encoding: .utf8) else {
+                assertFileError()
+                return nil
+            }
+            return Config(withJsonString: jsonString)
+        } catch {
+            assertFileError()
+            return nil
         }
     }
 }

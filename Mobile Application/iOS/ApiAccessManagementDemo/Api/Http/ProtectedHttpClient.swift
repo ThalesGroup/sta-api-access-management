@@ -114,7 +114,7 @@ struct HttpCode {
         case 406:
             errorMessage = "Failed: Not Acceptable" + httpCode
         default:
-            errorMessage = "Generic Failure" + httpCode + "See for details: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+            errorMessage = "Generic Failure" + httpCode + "\nSee for details: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         }
         
         self.success = success

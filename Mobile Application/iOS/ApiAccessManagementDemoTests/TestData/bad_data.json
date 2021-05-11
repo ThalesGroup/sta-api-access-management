@@ -1,9 +1,0 @@
-{
-   "apiUrl":"https://storeapi.stademo.com:8090",
-   "publicClientId":"garbage",
-   "publicClientSecret":"garbage",
-   "publicClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/I93AD2MBTD-STA/",
-   "retailClientId":"garbage",
-   "retailClientSecret":"garbage",
-   "retailClientWellknown":"https://spedemo-sasidp.stademo.com/auth/realms/I93AD2MBTD-STA/"
-}
