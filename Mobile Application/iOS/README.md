@@ -23,7 +23,7 @@ Swift Package Manager. This dependency is resolved automatically during build
 as long as there is connection to github. 
 
 ### Configuration
-The server configuration is to a generic configuration by default. In order to properly 
+The server configuration is set to a generic configuration by default. In order to properly 
 run the app, a valid server configuration file in JSON format needs to be imported.
 
 The schema can be seen below
