@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.thalesgroup.gartnersample.ui.MainActivity">
+    tools:context="com.thalesgroup.apiprotection.ui.MainActivity">
     <item
         android:id="@+id/action_list"
         android:title="List"

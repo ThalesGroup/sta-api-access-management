@@ -18,7 +18,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "com.thalesgroup.gartnersample"
+        applicationId "com.thalesgroup.apiprotection"
         minSdkVersion 25
         targetSdkVersion 30
         versionCode 3

@@ -6,7 +6,7 @@
     app:startDestination="@id/nav_map">
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.thalesgroup.gartnersample.ui.MapsFragment"
+        android:name="com.thalesgroup.apiprotection.ui.MapsFragment"
         android:label="API Protection Demo"
         tools:layout="@layout/fragment_maps" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.thalesgroup.gartnersample.ui.ProductListFragment"
+        android:name="com.thalesgroup.apiprotection.ui.ProductListFragment"
         android:label="List of Products"
         tools:layout="@layout/fragment_product_list">
         <argument
@@ -46,7 +46,7 @@
 
     <fragment
         android:id="@+id/moveStockFragment"
-        android:name="com.thalesgroup.gartnersample.ui.MoveStockFragment"
+        android:name="com.thalesgroup.apiprotection.ui.MoveStockFragment"
         android:label="Select Shop"
         tools:layout="@layout/fragment_move_stock">
         <argument
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/retailListFragment"
-        android:name="com.thalesgroup.gartnersample.ui.RetailListFragment"
+        android:name="com.thalesgroup.apiprotection.ui.RetailListFragment"
         android:label="Locations" >
         <argument
             android:name="store"
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_configuration"
-        android:name="com.thalesgroup.gartnersample.ui.ConfigFragment"
+        android:name="com.thalesgroup.apiprotection.ui.ConfigFragment"
         android:label="Configuration" >
         <action
             android:id="@+id/action_nav_configuration_to_OAuthFragment"
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/OAuthFragment"
-        android:name="com.thalesgroup.gartnersample.ui.OAuthFragment"
+        android:name="com.thalesgroup.apiprotection.ui.OAuthFragment"
         android:label="OAuth Information" />
 
 </navigation>
