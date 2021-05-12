@@ -208,7 +208,9 @@ class MainActivity : AppCompatActivity() {
             val inputStream: InputStream? = cr.openInputStream(data)
             val gson = Gson()
             val reader = BufferedReader(InputStreamReader(inputStream))
-            return gson.fromJson(reader, Config::class.java)
+            val config = gson.fromJson(reader, Config::class.java)
+            config.removeOpenIDSuffix()
+            return config
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
             Toast.makeText(this, R.string.file_read_not_found, Toast.LENGTH_LONG).show()
