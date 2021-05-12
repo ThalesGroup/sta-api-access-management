@@ -62,7 +62,7 @@ final class ProtectedHttpClient: HttpClientProtocol {
 
                 //print("Response: \(request); Code: \(response.statusCode)")
 
-                let result = HttpCode(response.statusCode)
+                let result = HttpCode(response.statusCode, data: data)
                 
                 guard result.success else {
                     theError = result.error
@@ -90,35 +90,44 @@ struct HttpCode {
     private(set) var success: Bool
     private(set) var error: Error?
     
-    init(_ statusCode: Int) {
-        
-        let httpCode = "\nHTTP: \(statusCode)"
+    init(_ statusCode: Int, data: Data?) {
         
         var success = false
-        var errorMessage = ""
+        var errorMessage: String?
+        
 
         switch statusCode {
         case 200...299:
             success = true
-            errorMessage = "Success" + httpCode
-        case 400:
-            errorMessage = "Failed: Bad Request" + httpCode
-        case 401:
-            errorMessage = "Failed: Unauthorized (RFC 7235)" + httpCode
-        case 403:
-            errorMessage = "Failed: Forbidden" + httpCode
-        case 404:
-            errorMessage = "Failed: Not Found" + httpCode
-        case 405:
-            errorMessage = "Failed: Method Not Allowed" + httpCode
-        case 406:
-            errorMessage = "Failed: Not Acceptable" + httpCode
         default:
-            errorMessage = "Generic Failure" + httpCode + "\nSee for details: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+            if let data = data {
+                errorMessage = String(data: data, encoding: .utf8)
+            }
         }
         
         self.success = success
-        self.error = success ? nil : NSError(domain: "HttpErrorDomain", code: statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+        self.error = success ? nil : NSError(domain: "HttpErrorDomain", code: statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage ?? genericHttpError(statusCode: statusCode)])
+    }
+    
+    private func genericHttpError(statusCode: Int) -> String {
+        switch statusCode {
+        case 200...299:
+            return "Success"
+        case 400:
+            return "Failed: Bad Request"
+        case 401:
+            return "Failed: Unauthorized (RFC 7235)"
+        case 403:
+            return "Failed: Forbidden"
+        case 404:
+            return "Failed: Not Found"
+        case 405:
+            return "Failed: Method Not Allowed"
+        case 406:
+            return "Failed: Not Acceptable"
+        default:
+            return "Generic Failure \nSee for details: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        }
     }
 }
 

@@ -30,12 +30,12 @@ extension Config {
     
     /// URL for Public Client Credentials
     var publicClientWellknownUrl: URL {
-        URL(string: publicClientWellknown)!
+        URL(string: publicClientWellknown.replacingOccurrences(of: ".well-known/openid-configuration", with: ""))!
     }
     
     /// URL for Authorized User Credentials
     var retailClientWellknownUrl: URL {
-        URL(string: retailClientWellknown)!
+        URL(string: retailClientWellknown.replacingOccurrences(of: ".well-known/openid-configuration", with: ""))!
     }
 
     private static func decode(_ data: Data) -> Config? {

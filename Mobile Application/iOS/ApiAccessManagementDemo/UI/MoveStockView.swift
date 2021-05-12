@@ -85,16 +85,7 @@ struct MoveStockView: View {
                 self.alertDescription = AlertDescription(title: "Success", message: "Stock has been moved successfully")
             }
             .onFailure { error in
-                var message = "Moving stock was not successful."
-                
-                if let error = error as NSError? {
-                    if [401, 403] .contains(error.code) {
-                        message = "Your account permissions don't have the ability to move this product between different locations."
-                    }
-                }
-                
-                message += "\(message)\n{\(error.localizedDescription)}"
-                
+                let message = "Error: \(error.localizedDescription)"
                 self.alertDescription = AlertDescription(title: "Failed", message: message)
             }
     }

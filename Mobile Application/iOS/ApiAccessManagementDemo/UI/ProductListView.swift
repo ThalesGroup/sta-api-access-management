@@ -49,7 +49,7 @@ struct ProductListView: View {
                 }
             } else {
                 if let error = error {
-                    Text(error.localizedDescription).multilineTextAlignment(.center)
+                    Text("Error: \(error.localizedDescription)").multilineTextAlignment(.center)
                 } else {
                     Text("Loading ...")
                 }
