@@ -120,19 +120,22 @@ class MainActivity : AppCompatActivity() {
         val config = if (preferences.getBoolean(PREF_HAS_INITIALIZED, false)) {
             loadConfig()
         } else {
-            // The default config is hardcoded here, examples of config files can be found in the
-            // json_samples folder
+            // Load in an empty config. The user must load a config in externally in order to use the
+            // app, or you must modify this config to provide a default
             val config = Config(
-                "https://ww2quvqcvb.execute-api.us-east-2.amazonaws.com/teststage/",
-                "22787bb2-c02f-4186-a087-438d4b32602f",
-                "20549e9a-c1cc-4ecb-a06b-0679076e7923",
-                "https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/",
-                "b3f31b74-54cf-4940-8dfd-703e56dc717d",
-                "3a1514ca-4e45-4818-9597-6e3b0533090a",
-                "https://spedemo-sasidp.stademo.com/auth/realms/KX8O5LFZFD-STA/"
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
             )
             saveConfig(config)
             config
+        }
+        if (config.apiUrl.isBlank()) {
+            Toast.makeText(this, "Config is blank, please load a config.json file", Toast.LENGTH_LONG).show()
         }
         viewModel.updateConfig(config)
     }

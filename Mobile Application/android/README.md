@@ -24,7 +24,10 @@ _Debug Variant_
 `./gradlew assembleDebug`
 
 ### Configuration
-The server configuration is defaulted to an AWS sample configuration. You can find this in the MainActivity.kt class.
+The server configuration is defaulted to an empty configuration. You can find 
+this in the MainActivity.kt class.
+Alternatively, you can provide a schema to the app after the user has launched 
+it through file sharing
 
 The schema can be seen below
 ~~~~
