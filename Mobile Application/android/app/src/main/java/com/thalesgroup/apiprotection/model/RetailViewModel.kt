@@ -37,11 +37,22 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
+/**
+ * View model to the retail repository and UI.
+ */
 class RetailViewModel: ViewModel() {
 
     lateinit var config: Config
     var clientAuth: ClientAuthentication? = null
+
+    /**
+     * This auth state captures the login flow authorization.
+     */
     var authState: AuthState? = null
+
+    /**
+     * This auth state captures the client credential authorization
+     */
     var publicAuthState: AuthState? = null
     lateinit var authService: AuthorizationService
     private val retailRepository = RetailRepository()
@@ -164,6 +175,8 @@ class RetailViewModel: ViewModel() {
 
     class AuthorizationInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+            // Doing nothing now, but useful to know that this interceptor can be used
+            // if necessary to modify a response before feeding it to the UI
             //            if (mainResponse.code() == 401 || mainResponse.code() == 403) {
 //            }
             return chain.proceed(chain.request())

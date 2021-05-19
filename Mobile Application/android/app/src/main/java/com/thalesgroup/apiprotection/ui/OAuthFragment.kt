@@ -16,7 +16,7 @@ class OAuthFragment: BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentOauthBinding.inflate(inflater, container, false)
         val authState = viewModel.authState ?: viewModel.publicAuthState

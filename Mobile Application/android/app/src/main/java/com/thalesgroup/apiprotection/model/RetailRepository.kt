@@ -2,6 +2,9 @@ package com.thalesgroup.apiprotection.model
 
 import com.thalesgroup.apiprotection.restapi.*
 
+/**
+ * Repository to the retail web services, used to access all the webservice APIs directly
+ */
 class RetailRepository {
 
     var webservice: RetailRestApi? = null

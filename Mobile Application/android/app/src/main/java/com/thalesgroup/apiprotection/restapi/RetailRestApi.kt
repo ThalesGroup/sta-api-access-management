@@ -1,8 +1,11 @@
 package com.thalesgroup.apiprotection.restapi
 
-import retrofit2.Call
 import retrofit2.http.*
 
+/**
+ * Describes the backend API. Apis take an authorization header, which is sent as a bearer token. This
+ * must be formatted previously before being passed to the API.
+ */
 interface RetailRestApi {
 
     @GET("shop")
@@ -19,10 +22,6 @@ interface RetailRestApi {
 
     @GET("warehouse")
     suspend fun getWarehouses(@Header("Authorization") value: String): List<Warehouse>
-
-    @GET("warehouse")
-    suspend fun getWarehouses2(@Header("Authorization") value: String): Call<List<Warehouse>>
-
 
     @GET("warehouse/{warehouseId}")
     suspend fun getWarehouseInfo(@Header("Authorization") value: String, @Path("warehouseId") warehouseId: String): WarehouseInfo
