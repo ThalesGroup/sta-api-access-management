@@ -11,7 +11,6 @@ enum AuthorizationState {
 
     typealias UserInfo = [AnyHashable: Any]
 
-    
     /// Not Authorized state
     case notAuthorized
         
@@ -28,6 +27,7 @@ protocol AuthorizationProtocol {
     /// Authorization State
     var authorizationState: AuthorizationState { get }
     
+    /// Token Info
     var tokenInfo: TokenInfo? { get }
     
     /// User Authorization Flow

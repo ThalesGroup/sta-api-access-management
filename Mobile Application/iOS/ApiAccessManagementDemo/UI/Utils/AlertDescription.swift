@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Alert Description
 struct AlertDescription: Identifiable {
     var id: String { title }
     var title: String

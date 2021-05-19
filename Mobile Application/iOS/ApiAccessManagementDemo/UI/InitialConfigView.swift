@@ -9,7 +9,6 @@ struct InitialConfigView: View {
     
     @Binding var hidden: Bool
     @State private var isImporting = false
-    @State private var isPasting = false
     @State private var importedConfigString: String = ""
     @State private var confirmConfigIsShown = false
     
@@ -23,14 +22,6 @@ struct InitialConfigView: View {
                     Text(schema).font(.system(size: 14, design: .monospaced))
                         .padding()
                 }.background(Color.init(UIColor.systemGray5))
-                
-                NavigationLink(
-                    destination: TextField("Paste JSON", text: $importedConfigString),
-                    isActive: $isPasting,
-                    label: {
-                        EmptyView()
-                    })
-
                 Spacer()
             }
             .padding()

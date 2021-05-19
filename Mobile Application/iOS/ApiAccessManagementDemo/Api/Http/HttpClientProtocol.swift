@@ -13,10 +13,12 @@ enum HttpMethod: String {
     case GET, POST, PUT, PATCH, DELETE
 }
 
+/// Definition of HTTP Client
 protocol HttpClientProtocol {
     func request<T>(_ endpoint: Endpoint<T>) -> HttpResponse<T>
 }
 
+/// Generic HTTP Response
 final class HttpResponse<T> where T: Any {
     
     typealias SuccessHandler = (T) -> Void
@@ -25,17 +27,21 @@ final class HttpResponse<T> where T: Any {
     private(set) var successHandler: SuccessHandler? = nil
     private(set) var failureHandler: FailureHandler? = nil
     
+    
+    /// Success Handler
     @discardableResult func onSuccess(_ successHandler: SuccessHandler?) -> HttpResponse<T> {
         self.successHandler = successHandler
         return self
     }
     
+    /// Failure handler
     @discardableResult func onFailure(_ failureHandler: FailureHandler?) -> HttpResponse<T> {
         self.failureHandler = failureHandler
         return self
     }
 }
 
+/// Generic Endpoint
 final class Endpoint<T> {
     let method: HttpMethod
     let path: HttpRelativePath
@@ -59,6 +65,7 @@ final class Endpoint<T> {
     }
 }
 
+/// Endpoint where associated objects are of Decodable type
 extension Endpoint where T: Decodable {
     convenience init(method: HttpMethod = .GET,
                      path: HttpRelativePath,
@@ -68,7 +75,7 @@ extension Endpoint where T: Decodable {
         }
     }
 }
-
+/// Endpoint where associated objects are of Void type.
 extension Endpoint where T == Void {
     convenience init(method: HttpMethod = .GET,
                      path: HttpRelativePath,

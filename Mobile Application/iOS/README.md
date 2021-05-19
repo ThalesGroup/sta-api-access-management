@@ -38,3 +38,5 @@ The schema can be seen below
    "retailClientWellknown":"https://{authorization-hostname}/.well-known/openid-configuration"
 }
 ```
+Before running the app, make sure you have saved a valid JSON config file on your device. At the app's first launch, 
+it will require a config file which can be done by using the file selector displayed after tapping the `Import` button.  
