@@ -11,15 +11,15 @@ AWS Lambda function to validate OIDC based access mechanism. This Lambda functio
 
 2.	Open the **APIGatewayAuthorizerHandler.sln** file in your Visual Studio.
 
-    Note: This project runs on .NET Core 3.1
+    	Note: This project runs on .NET Core 3.1
 
-3.	In Visual Studio, under **Solution Explorer** > **APIGatewayAuthorizerHandler** project, click **config.json** file.
-    ![Lambda_Step3](/Resources/Lambda_Step3.png)
+3.	In Visual Studio, under **Solution Explorer** > **APIGatewayAuthorizerHandler** project, click **config.json** file.</br>
+   	![Lambda_Step3](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step3.png)
  
 4.	In **config.json**, replace <**YOUR IDP WELL KNOWN CONFIGURATION URL**> with your IdP Well Known Configuration URL.
 
-5.	Under **Solution Explorer** > **APIGatewayAuthorizerHandler**, click **Function.cs** file.
-    ![Lambda_Step5](/Resources/Lambda_Step5.png)
+5.	Under **Solution Explorer** > **APIGatewayAuthorizerHandler**, click **Function.cs** file.</br>
+    	![Lambda_Step5](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step5.png)
 
 6.	In **Function.cs**, perform the following steps to configure group-based access rules on the various API endpoints:
 
@@ -29,11 +29,11 @@ AWS Lambda function to validate OIDC based access mechanism. This Lambda functio
 
         Here, <**VERB**> can be Get, Post, Put, Patch, Head, Delete, and Options. 
 
-        For example, policyBuilder.AllowMethod(HttpVerb.Get, "/shop");
-        ![Lambda_Step6a](/Resources/Lambda_Step6a.png)
+        For example, policyBuilder.AllowMethod(HttpVerb.Get, "/shop");</br>
+        ![Lambda_Step6a](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step6a.png)
    
-    2.	To enable group-based authorization for a set of API endpoints, configure the “if” and “else if” conditions with the  required group names. By default, “employee” and “manager” are used as group names.
-        ![Lambda_Step6b](/Resources/Lambda_Step6b.png)
+    2.	To enable group-based authorization for a set of API endpoints, configure the “if” and “else if” conditions with the  required group names. By default, “employee” and “manager” are used as group names.</br>
+        ![Lambda_Step6b](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step6b.png)
 
     3.	Add your API endpoints and their corresponding HTTP verb that require group authorization, in the below format:
 
@@ -41,14 +41,14 @@ AWS Lambda function to validate OIDC based access mechanism. This Lambda functio
 
         Here, <**VERB**> can be Get, Post, Put, Patch, Head, Delete, and Options.
 
-        For example, policyBuilder.AllowMethod(HttpVerb.Get, " /warehouse ");
-        ![Lambda_Step6c](/Resources/Lambda_Step6c.png)
+        For example, policyBuilder.AllowMethod(HttpVerb.Get, " /warehouse ");</br>
+        ![Lambda_Step6c](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step6c.png)
  
 7.	To build the **‘APIGatewayAuthorizerHandler’** project, right-click on the ‘**APIGatewayAuthorizerHandler**’ project, and then click **Build**.</br>
-	![Lambda_Step7](/Resources/Lambda_Step7.png) 
+	![Lambda_Step7](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step7.png) 
 
-8.	To publish this project to AWS Lambda, under **Solution Explorer**, right-click on the **‘APIGatewayAuthorizerHandler’** project, and then click **Publish to AWS Lambda**.
-	![Lambda_Step8](/Resources/Lambda_Step8.png)
+8.	To publish this project to AWS Lambda, under **Solution Explorer**, right-click on the **‘APIGatewayAuthorizerHandler’** project, and then click **Publish to AWS Lambda**.</br>
+	![Lambda_Step8](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step8.png)
 
 9.	On **Upload to AWS Lambda** window, under **Upload Lambda Function**, perform the following steps:
 
@@ -64,13 +64,13 @@ AWS Lambda function to validate OIDC based access mechanism. This Lambda functio
 
     6.	In the **Save settings to aws-lambda-tools-defaults.json for future deployments** checkbox, ensure it is checked.
 
-    7.	Click **Next**.
-    ![Lambda_Step9](/Resources/Lambda_Step9.png)
+    7.	Click **Next**.</br>
+    ![Lambda_Step9](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step9.png)
  
 10.	On **Upload to AWS Lambda** window, under **Advanced Function Details**, perform the following steps:
 
     1.	Under **Permissions**, in the **Role Name** field, from the drop-down, under the **New Role Based on AWS Managed Policy**, select **AWSLambdaExecute**. Or select an existing role, that has administrator rights.
 
-    2.	Click **Upload**.
-    ![Lambda_Step10](/Resources/Lambda_Step10.png)
+    2.	Click **Upload**.</br>
+    ![Lambda_Step10](/API%20Gateway/Amazon%20API%20Gateway/Resources/Lambda_Step10.png)
 
