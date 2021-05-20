@@ -4,7 +4,7 @@ Below is a list of releases available to download
 ## API Gateway Integrations
 
 ### Apigee
-Sample configuration that can be imported to Apigee
+Sample configuration that can be imported to Apigee using the
 [Apigee Sample](Apigee/ThalesDemoAPI_rev6_2021_05_04.zip)
 
 ### AWS API Gateway
