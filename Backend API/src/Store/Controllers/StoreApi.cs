@@ -13,7 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Store.Attributes;
+using Store.Middleware.WebApi.Middleware;
 using Store.Models;
 using Store.Services;
 
@@ -28,6 +30,8 @@ namespace Store.Controllers
     public sealed class StoreApiController : ControllerBase
     {
         private readonly IInventoryDatabase _inventoryDatabase;
+        private const string JwtClaimMustContainManager = JwtMiddleware.JwtClaimMustContainManagerPolicy;
+        private const string JwtClaimMustContainManagerOrEmployee = JwtMiddleware.JwtClaimMustContainManagerOrEmployeePolicy;
 
         /// <summary>
         /// Constructor
@@ -48,6 +52,7 @@ namespace Store.Controllers
         [ValidateModelState]
         [Produces("application/json")]
         [SwaggerOperation("ShopGet")]
+        [Authorize]
         [SwaggerResponse(statusCode: 200, type: typeof(List<ShopInfo>), description: "Successfully returned a list of shops")]
         public IActionResult ShopGet()
         {
@@ -67,6 +72,7 @@ namespace Store.Controllers
         [ValidateModelState]
         [Produces("application/json")]
         [SwaggerOperation("ShopShopIdGet")]
+        [Authorize]
         [SwaggerResponse(statusCode: 200, type: typeof(Shop), description: "Successfully returned a shop info")]
         public IActionResult ShopShopIdGet([FromRoute][Required]string shopId)
         {
@@ -99,6 +105,7 @@ namespace Store.Controllers
         [Route("/shop/{shopId}/stock")]
         [ValidateModelState]
         [Produces("application/json")]
+        [Authorize]
         [SwaggerOperation("ShopShopIdStockGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<StockItem>), description: "Successfully returned a list of stock items in a shop")]
         public IActionResult ShopShopIdStockGet([FromRoute][Required]string shopId)
@@ -126,6 +133,7 @@ namespace Store.Controllers
         [Route("/shop/{shopId}/products")]
         [ValidateModelState]
         [Produces("application/json")]
+        [Authorize]
         [SwaggerOperation("ShopShopIdProductsGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<Product>), description: "Successfully returned a list of products available at the store")]
         public IActionResult ShopShopIdProductsGet([FromRoute][Required]string shopId)
@@ -151,6 +159,7 @@ namespace Store.Controllers
         [Route("/warehouse")]
         [ValidateModelState]
         [Produces("application/json")]
+        [Authorize(Policy = JwtClaimMustContainManagerOrEmployee)]
         [SwaggerOperation("WarehouseGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<WarehouseInfo>), description: "Successfully returned a list of warehouses")]
         public IActionResult WarehouseGet()
@@ -170,6 +179,7 @@ namespace Store.Controllers
         [Route("/warehouse/{warehouseId}")]
         [ValidateModelState]
         [Produces("application/json")]
+        [Authorize(Policy = JwtClaimMustContainManagerOrEmployee)]
         [SwaggerOperation("WarehouseWarehouseIdGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(Warehouse), description: "Successfully returned a warehouse info")]
         public IActionResult WarehouseWarehouseIdGet([FromRoute][Required]string warehouseId)
@@ -203,6 +213,7 @@ namespace Store.Controllers
         [Route("/warehouse/{warehouseId}/stock")]
         [ValidateModelState]
         [Produces("application/json")]
+        [Authorize(Policy = JwtClaimMustContainManagerOrEmployee)]
         [SwaggerOperation("WarehouseWarehouseIdStockGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<StockItem>), description: "Successfully returned a list of stock items in a warehouse")]
         public IActionResult WarehouseWarehouseIdStockGet([FromRoute][Required]string warehouseId)
@@ -235,6 +246,7 @@ namespace Store.Controllers
         [Route("/warehouse/{warehouseId}/stock/{stockId}/move/{shopId}")]
         [ValidateModelState]
         [Consumes("application/json")]
+        [Authorize(Policy = JwtClaimMustContainManager)]
         [SwaggerOperation("WarehouseWarehouseIdStockStockIdMoveShopIdPost")]
         public IActionResult WarehouseWarehouseIdStockStockIdMoveShopIdPost([FromRoute][Required]string warehouseId, [FromRoute][Required]string stockId, [FromRoute][Required]string shopId, [FromBody]MoveRequest body)
         {

@@ -9,13 +9,16 @@
  */
 using System;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Store.Filters;
+using Store.Middleware.WebApi.Middleware;
 using Store.Services;
 
 
@@ -32,10 +35,14 @@ namespace Store
         /// Constructor
         /// </summary>
         /// <param name="env"></param>
-        public Startup(IWebHostEnvironment env)
+        /// <param name="configuration"></param>
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             _hostingEnv = env;
+            Configuration = configuration;
         }
+
+        private IConfiguration Configuration { get; }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -76,6 +83,9 @@ namespace Store
                     // Use [ValidateModelState] on Actions to actually validate it in C# as well!
                     c.OperationFilter<GeneratePathParamsValidationFilter>();
                 });
+           
+            services.AddJwtAuthorizationAndAuthentication(Configuration);
+
         }
 
         /// <summary>
@@ -94,8 +104,24 @@ namespace Store
             });
             
             app.UseHttpsRedirection();
+            // Adding Authentication and Authorization. The order is important!!!
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseEndpoints(endpoints =>
+            {
+                if (bool.Parse(Configuration["JwtAuthorizationAndAuthenticationEnabled"] ?? "false"))
+                {
+                    endpoints.MapControllers();
+                }
+                else
+                {
+                    // If the JwtAuthorizationAndAuthenticationEnabled config is false then all Authorization
+                    // code is ignored 
+                    endpoints.MapControllers().WithMetadata(new AllowAnonymousAttribute());
+                }
+            });
+
         }
     }
 }

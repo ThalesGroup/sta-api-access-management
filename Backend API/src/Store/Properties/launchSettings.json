@@ -4,10 +4,28 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:8080",
       "environmentVariables": {
+        "STORE_DB_PATH": "sampledata.json",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:8080"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "httpPort": 8080,
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "http://+:8080",
+        "STORE_DB_PATH": "sampledata.json",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "STORE_DB_PATH": "sampledata.json"
+        "JwtAuthorizationAndAuthenticationEnabled": "false",
+        "JwtAuthentication:ValidateIssuer": "true",
+        "JwtAuthentication:ValidateAudience": "true",
+        "JwtAuthentication:ClientId": "[YOUR_CLIENT_ID]",
+        "JwtAuthentication:Issuer": "[YOUR_ISSUER]",
+        "JwtAuthentication:Authority": "[YOUR_WELL_KNOWN_OPENID_CONFIGURATION]"
       }
     }
   }
