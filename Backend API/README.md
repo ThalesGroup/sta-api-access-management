@@ -15,6 +15,8 @@ This is a simple store API with authentication and authorization.
 
 The sample code demonstrates how to enable authentication and authorization on a sample Swagger API. Enabling authentication ensures that a JWT is valid. For example, a valid JWT has not been tampered with and has not expired. Enabling authorization checks that the JWT has specific claims when a JWT is used.
 
+**Note:** If policy enforcement is handled by a third-party API gateway, do not enable policy enforcement.
+
 ## Configuration
 
 When debugging in the web profile, the src/Store/appsettings.json file is used to define the settings.
