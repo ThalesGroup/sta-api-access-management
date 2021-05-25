@@ -82,7 +82,7 @@ namespace Store.Middleware
                         {
                             // This happens when a policy is not satisfied
                             var message =
-                                "Unauthorized. You need to login as an employee or manager to list warehouses";
+                                "Unauthorized. You need to login as an employee or manager execute this function.";
                             context?.Response.OnStarting(async () =>
                                 {
                                     context.Response.ContentType = "application/json; charset=utf-8";
