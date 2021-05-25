@@ -1,6 +1,6 @@
 
 ## Table of contents
- * [Store - ASP.NET Core 3.1 Server](#Store-ASP.NET-Core-3.1-Server)
+ * [Store - ASP.NET Core 3.1 Server](#store---aspnet-core-31-server)
  * [Configuration](#configuration)
  * [Sample Code](#sample-code)
 	 * [Middleware](#middleware)
@@ -40,29 +40,29 @@ If `ValidateAudience` is set to true, the `ClientId` must be a valid value other
 ## Sample Code
 
 ### Middleware
-The code in src/Store/Middleware/ defines both the authorization and authentication.
+The code in [src/Store/Middleware/](https://github.com/ThalesGroup/sta-api-access-management/tree/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Middleware) defines both the authorization and authentication.
 
-The JwtMiddleware is injected in Startup.cs by calling `services.AddJwtAuthorizationAndAuthentication(Configuration)`
+The JwtMiddleware is injected in Startup.cs by calling [`services.AddJwtAuthorizationAndAuthentication(Configuration)`](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Startup.cs#L87)
 
-In this method, we define how the JWT is authenticated (using the `TokenValidationParameters`).
+In this method, we define how the JWT is authenticated (using the [`TokenValidationParameters`](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Middleware/JwtMiddleware.cs#L62-L71)).
 
 The response body is also defined, depending on the JWT events. 
 
 Authorization is defined in policies. In this sample code, two policies are defined:
 
-- `JwtClaimMustContainManager` checks that the JWT has a claim called `groups` and that it must have `manager` in the claim.
--   `JwtClaimMustContainManagerOrEmployee` defines that the JWT must have either `manager` or `employee` in the `groups` claim.
+- [`JwtClaimMustContainManager`](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Middleware/JwtMiddleware.cs#L145-L147) checks that the JWT has a claim called `groups` and that it must have `manager` in the claim.
+- [`JwtClaimMustContainManagerOrEmployee`](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Middleware/JwtMiddleware.cs#L149-L151) defines that the JWT must have either `manager` or `employee` in the `groups` claim.
 
 If any of this is not true, the response to the request is Unauthorized.
 
-The implementation details for the policy can be found in the `JwtClaimMustHaveSpecifiedGroup` class.
+The implementation details for the policy can be found in the [`JwtClaimMustHaveSpecifiedGroup`](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Middleware/JwtClaimMustHaveSpecifiedGroup.cs) class.
 
 ### Defining Authorization and Authentication in the API
-Methods that need only authorization, which is verification that the JWT has not been tampered with and has not expired, have the `[Authorize]` decorator.
+Methods that need only authorization, which is verification that the JWT has not been tampered with and has not expired, have the `[Authorize]` decorator. Sample code can be found [here](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Controllers/StoreApi.cs#L50-L61).
 
-Methods that need both authorization and authentication that the token has `manager` or `employee` in the `groups` claim have the `[Authorize(Policy = JwtClaimMustContainManagerOrEmployee)]` decorator.
+Methods that need both authorization and authentication that the token has `manager` or `employee` in the `groups` claim have the `[Authorize(Policy = JwtClaimMustContainManagerOrEmployee)]` decorator. Sample code can be found [here](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Controllers/StoreApi.cs#L158-L169).
 
-Methods that need both authorization and authentication that the token has `manager`  in the `groups` claim have the `[Authorize(Policy = JwtClaimMustContainManager)]` decorator.
+Methods that need both authorization and authentication that the token has `manager`  in the `groups` claim have the `[Authorize(Policy = JwtClaimMustContainManager)]` decorator. Sample code can be found [here](https://github.com/ThalesGroup/sta-api-access-management/blob/3b6e8a5d0c74f2cb2da3d277eee7dae4ce8ea693/Backend%20API/src/Store/Controllers/StoreApi.cs#L245-L267).
 
 
 ## Run
