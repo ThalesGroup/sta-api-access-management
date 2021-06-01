@@ -7,7 +7,7 @@ API Access Management ensures that only authenticated and authorized clients can
 
 ## Documentation
 
-A detailed description of the API Access Management Demo setup is available at [thalesdocs.com](https://thalesdocs.com/sta/Content/Home.htm).
+A detailed description of the API Access Management Demo setup is available at [thalesdocs.com](https://thalesdocs.com/sta/Content/STA/API/APIdemo.htm).
 
 ## Contributing
 
