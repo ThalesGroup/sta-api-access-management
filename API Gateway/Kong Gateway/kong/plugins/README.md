@@ -51,7 +51,7 @@ a. You need to change the following:
         end
       end 
      ```
- ![Web-browser.png](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/kong/lib/resty/Resources/web-browser.png)
+ ![Web-browser.png](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/kong/lib/resty/Resources/web-browser.png)
  
  ## For Postman-Client Flow
  
@@ -65,7 +65,7 @@ a. You need to change the following:
         end
      ```
      
- ![Web-browser.png](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/kong/lib/resty/Resources/postman-invalid_token.png)
+ ![Web-browser.png](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/kong/lib/resty/Resources/postman-invalid_token.png)
  
   b. Search for **if not introspection_cache_ignore and json[expiry_claim] then** section in this file and add the below code snippet after end of this loop:
 
@@ -81,7 +81,7 @@ a. You need to change the following:
           end
           return json, err
      ```
-![Web-browser.png](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/kong/lib/resty/Resources/postman-group%20claim%20and%20msg.png)
+![Web-browser.png](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/kong/lib/resty/Resources/postman-group%20claim%20and%20msg.png)
 
   c. Search for **local access_token, err = openidc_get_bearer_access_token(opts)** section in this file and modify the code snippet as mentioned below:
    
@@ -94,7 +94,7 @@ a. You need to change the following:
 
        ```
 
-![Web-browser.png](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/kong/lib/resty/Resources/postman-Nogroupclaim.png)
+![Web-browser.png](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/kong/lib/resty/Resources/postman-Nogroupclaim.png)
 
   d. Search for **function openidc.bearer_jwt_verify(opts, ...)** section in this file and modify the code snippet as mentioned below before this function:
    
@@ -111,6 +111,6 @@ a. You need to change the following:
             return json, err
           end
        ```
-![Web-browser.png](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/kong/lib/resty/Resources/postman-JWTExpired%20msg.png)
+![Web-browser.png](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/kong/lib/resty/Resources/postman-JWTExpired%20msg.png)
 
 e. Save the changes.
