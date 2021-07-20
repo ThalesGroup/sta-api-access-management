@@ -7,7 +7,7 @@ Kong provides a flexible abstraction layer that securely manages communication b
 2. STA Tenant Access
 3. Postman Client
 
-![GitHub Logo](http://10.124.100.55/Gemalto/IntegrationAutomation/blob/master/Kong%20Gateway/Resources/kong-STA.jpg)
+![GitHub Logo](https://github.com/ThalesGroup/sta-api-access-management/blob/master/API%20Gateway/Kong%20Gateway/Resources/kong-STA.jpg)
 
 ## Integration with SafeNet Trusted Access
 
