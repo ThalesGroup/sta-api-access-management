@@ -28,7 +28,7 @@ If you want to have total control over the session management, you can store the
 Once you perform requests, Kong will extract the session identifier and retrieves the auth token from the redis storage, setting the Authorization header.
 
 # Configuring IdP as an authentication/authorization server
-You can visit to our Kong Gateway Documentation available at [GitHub](http://github.com).
+You can visit to our Kong Gateway Documentation available at [Resources page](https://resources.us.safenetid.com/help/Kong_API_Access_Management_1/Kong_Gateway_Help/Index.htm#STAInstallation_OIDC).
 
 # For Group Based Claim Authorization configuration
 If you have already running kong API Gateway opensource setup, you must refer the README.md provided in kong/Plugins folder.
